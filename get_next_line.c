@@ -6,7 +6,7 @@
 /*   By: benes-al <benes-al@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 21:27:14 by benes-al          #+#    #+#             */
-/*   Updated: 2025/05/10 08:36:19 by benes-al         ###   ########.fr       */
+/*   Updated: 2025/05/12 19:50:39 by benes-al         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,33 @@
 
 char	*get_next_line(int fd)
 {
-	static char	buffer[BUFFER_SIZE + 1];
 	char		*line;
-	int			bytes_read;
+	char		*temp;
+	static char	buffer[BUFFER_SIZE + 1];
 
-	while (ft_verification(buffer) =! 1)
+	line = "\0";
+	temp = NULL;
+	read(fd, buffer, BUFFER_SIZE);
+	while (search_buffer_linebreak(buffer) != 1)
 	{
-		bytes_read = read(fd, buffer, BUFFER_SIZE);
-		line = strcnt(line, buffer, bytes_read);
-	} 
+		temp = line;
+		line = join_buffer_to_line(buffer, line);
+		free (temp);
+		read(fd, buffer, BUFFER_SIZE);
+	}
+	return (line);
 }
 
 #include <fcntl.h>
+#include <stdio.h>
 
 int	main (void)
 {
 	int	fd;
 	char *str;
+	
 	fd = open("test.txt", O_RDONLY);
 	str = get_next_line(fd);
+	printf("%s\n", str);
 	free(str);
 }

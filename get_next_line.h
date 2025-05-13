@@ -6,7 +6,7 @@
 /*   By: benes-al <benes-al@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 21:27:37 by benes-al          #+#    #+#             */
-/*   Updated: 2025/05/10 08:35:22 by benes-al         ###   ########.fr       */
+/*   Updated: 2025/05/12 17:48:22 by benes-al         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 //macros
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10
+#  define BUFFER_SIZE 4
 # endif
 
 //libraries
@@ -27,9 +27,9 @@
 //prototype functions
 
 char	*get_next_line(int fd);
-int		ft_strlen(char *line)
-char	*ft_strcat(char *buffer, char *line, int bytes_read)
-int		ft_verification(char *buffer)
-int		ft_strlen(char *line)
+char	*join_buffer_to_line(char *buffer, char *line);
+char	*shift_buffer_left(char *buffer);
+int		search_buffer_linebreak(char *buffer);
+int		get_string_lenght(char *string);
 
 #endif

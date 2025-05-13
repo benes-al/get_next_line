@@ -6,21 +6,30 @@
 /*   By: benes-al <benes-al@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 21:27:58 by benes-al          #+#    #+#             */
-/*   Updated: 2025/05/10 08:36:11 by benes-al         ###   ########.fr       */
+/*   Updated: 2025/05/12 18:46:00 by benes-al         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_strcat(char *buffer, char *line, int bytes_read)
+char	*shift_buffer_left(char *buffer)
+{
+	while (*buffer != '\n')
+		buffer++;
+	return (buffer);
+}
+
+char	*join_buffer_to_line(char *buffer, char *line)
 {
 	char	*temp;
+	int		temp_bytes;
 	int		i;
 	int		j;
 
 	i = 0;
 	j = 0;
-	temp = malloc(sizeof(char) * (bytes_read + ft_strlen(line) + 1));
+	temp_bytes = get_string_lenght(line) + get_string_lenght(buffer);
+	temp = malloc(sizeof(char) * (temp_bytes + 1));
 	if(!temp)
 		return (0);
 	while (line[i])
@@ -37,26 +46,26 @@ char	*ft_strcat(char *buffer, char *line, int bytes_read)
 	return (temp);
 }
 
-int	ft_verification(char *buffer)
+int	search_buffer_linebreak(char *buffer)
 {
 	int	i;
 
 	i = 0;
-	while (i < BUFFER_SIZE)
+	while (buffer[i])
 	{
-		if (buffer[i] == '\n' || buffer [i] == '\0')
+		if (buffer[i] == '\n')
 			return (1);
 		i++;
 	}
 	return (0);
 }
 
-int	ft_strlen(char *line)
+int	get_string_lenght(char *string)
 {
 	int	i;
 
 	i = 0;
-	while (line[i])
+	while (string[i])
 		i++;
 	return (i);
 	
