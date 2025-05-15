@@ -6,7 +6,7 @@
 /*   By: benes-al <benes-al@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 21:27:37 by benes-al          #+#    #+#             */
-/*   Updated: 2025/05/12 17:48:22 by benes-al         ###   ########.fr       */
+/*   Updated: 2025/05/15 19:16:54 by benes-al         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@ char	*get_next_line(int fd);
 char	*join_buffer_to_line(char *buffer, char *line);
 char	*shift_buffer_left(char *buffer);
 int		search_buffer_linebreak(char *buffer);
-int		get_string_lenght(char *string);
+int		get_len(char *string);
 
 #endif

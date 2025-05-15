@@ -6,7 +6,7 @@
 /*   By: benes-al <benes-al@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 21:27:58 by benes-al          #+#    #+#             */
-/*   Updated: 2025/05/12 18:46:00 by benes-al         ###   ########.fr       */
+/*   Updated: 2025/05/15 19:46:01 by benes-al         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,49 @@
 
 char	*shift_buffer_left(char *buffer)
 {
-	while (*buffer != '\n')
-		buffer++;
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (buffer[i] != '\n' && buffer[i] != '\0')
+		i++;
+	if (buffer[i] == '\n')
+		i++;
+	while (buffer[i])
+		buffer[j++] = buffer[i++];
+	while (j < BUFFER_SIZE)
+		buffer[j++] = 0;
 	return (buffer);
 }
 
 char	*join_buffer_to_line(char *buffer, char *line)
 {
-	char	*temp;
-	int		temp_bytes;
+	char	*new_line;
 	int		i;
 	int		j;
 
 	i = 0;
 	j = 0;
-	temp_bytes = get_string_lenght(line) + get_string_lenght(buffer);
-	temp = malloc(sizeof(char) * (temp_bytes + 1));
-	if(!temp)
-		return (0);
-	while (line[i])
+	new_line = malloc(sizeof(char) * (get_len(line) + get_len(buffer) + 1));
+	if (!new_line)
+		return (free (line), NULL);
+	while (line && line[i])
 	{
-		temp[i] = line[i];
+		new_line[i] = line[i];
 		i++;
 	}
-	while (buffer[j])
+	while (i + j < (get_len(line) + get_len(buffer)))
 	{
-		temp[i + j] = buffer[j];
+		new_line[i + j] = buffer[j];
 		j++;
 	}
-	temp[i + j] = '\0';
-	return (temp);
+	new_line[i + j] = '\0';
+	if (line)
+		free(line);
+	if (!new_line)
+		return (free(new_line), NULL);
+	return (new_line);
 }
 
 int	search_buffer_linebreak(char *buffer)
@@ -60,13 +73,16 @@ int	search_buffer_linebreak(char *buffer)
 	return (0);
 }
 
-int	get_string_lenght(char *string)
+int	get_len(char *string)
 {
 	int	i;
 
 	i = 0;
-	while (string[i])
+	if (!string)
+		return (0);
+	while (string[i] && string[i] != '\n')
+		i++;
+	if (string[i] == '\n')
 		i++;
 	return (i);
-	
 }
