@@ -6,7 +6,7 @@
 /*   By: benes-al <benes-al@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 21:27:14 by benes-al          #+#    #+#             */
-/*   Updated: 2025/05/16 22:10:46 by benes-al         ###   ########.fr       */
+/*   Updated: 2025/05/17 10:15:37 by benes-al         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*get_next_line(int fd)
 	int			bytes_read;
 	
 	line = NULL;
-	if (fd < 0 || fd > 1024 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	line = join_buffer_to_line(buffer[fd], line);
 	while (!search_buffer_linebreak(buffer[fd]))
@@ -40,8 +40,16 @@ char	*get_next_line(int fd)
 }
 /* 
 #include <stdio.h>
+#include <fcntl.h>
 
 int	main(void)
 {
-	printf("%s", get_next_line(0));
+	int	fda;
+	int fdb;
+	
+	fda = open("a.txt", O_RDONLY);
+	fdb = open("b.txt", O_RDONLY);
+	printf("%s", get_next_line(fda));
+	printf("%s", get_next_line(fdb));
+	printf("%s", get_next_line(fda));
 } */
