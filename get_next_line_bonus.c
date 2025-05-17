@@ -6,7 +6,7 @@
 /*   By: benes-al <benes-al@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 21:27:14 by benes-al          #+#    #+#             */
-/*   Updated: 2025/05/17 10:15:37 by benes-al         ###   ########.fr       */
+/*   Updated: 2025/05/17 10:22:38 by benes-al         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*get_next_line(int fd)
 	static char	buffer[OPENFD_MAX][BUFFER_SIZE + 1];
 	char		*line;
 	int			bytes_read;
-	
+
 	line = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
