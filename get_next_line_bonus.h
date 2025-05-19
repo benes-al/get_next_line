@@ -6,7 +6,7 @@
 /*   By: benes-al <benes-al@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 21:27:37 by benes-al          #+#    #+#             */
-/*   Updated: 2025/05/17 09:50:09 by benes-al         ###   ########.fr       */
+/*   Updated: 2025/05/19 15:56:39 by benes-al         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@
 #  define BUFFER_SIZE 4
 # endif
 
-# ifndef OPNENFD_MAX
-#  define OPENFD_MAX 1024
-# endif
+# define OPENFD_MAX 1024
 
 //libraries
 
