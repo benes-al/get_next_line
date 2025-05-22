@@ -1,6 +1,7 @@
 GET NEXT LINE
 
 Description
+
 This project is about programming a function that returns a line read from a file descriptor.
 
 Each time the function is called, it reads from the file descriptor line by line until it reaches the end of the file.
